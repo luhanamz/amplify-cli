@@ -2,10 +2,10 @@ import { convertToCompleteMapParams, isCompleteMapParams, MapParameters } from '
 import { merge } from './utils/resourceParamsUtils';
 import { supportedServices, ServiceConfig } from '../supportedServices';
 import { ServiceName, provider } from './utils/constants';
-import _ from 'lodash';
 import { open, exitOnNextTick } from 'amplify-cli-core';
 import { createMapResource } from './utils/createMapResource';
-
+import { addPlaceIndexResource } from './provider-controllers/placeIndex';
+import { GeoParameters } from './utils/resourceParamsUtils';
 /**
  * Entry point for creating a new Geo resource
  * @param context Amplify Core Context object
@@ -15,7 +15,7 @@ import { createMapResource } from './utils/createMapResource';
 export async function addResource(
   context: any,
   service: string,
-  parameters?: Partial<MapParameters>
+  parameters?: Partial<GeoParameters>
 ): Promise<string> {
   // load the service config for this service
   const BAD_SERVICE_ERR = new Error(`amplify-category-geo is not configured to provide service type ${service}`);
@@ -38,9 +38,21 @@ export async function addResource(
     case ServiceName.Map:
       const serviceConfig: ServiceConfig<MapParameters> = supportedServices[service];
       return addMapResource(context, service, serviceConfig, parameters);
+    case ServiceName.PlaceIndex:
+      return addPlaceIndexResource(context);
     default:
       throw BAD_SERVICE_ERR;
   }
+}
+
+/**
+ * Entry point for updating a new Geo resource
+ * @param context Amplify Core Context object
+ * @param service The cloud service that is providing the category
+ * @param parameters Parameters used to configure the resource. If not specified, a walkthrough will be launched to populate it.
+ */
+export async function updateResource() {
+  console.log('update resource');
 }
 
 function checkIfAuthExists(context: any) {
