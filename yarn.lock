@@ -1046,7 +1046,7 @@
     jsonschema "^1.4.0"
     semver "^7.3.2"
 
-"@aws-cdk/cloudformation-diff@1.72.0":
+"@aws-cdk/cloudformation-diff@1.72.0", "@aws-cdk/cloudformation-diff@~1.72.0":
   version "1.72.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/cloudformation-diff/-/cloudformation-diff-1.72.0.tgz#fb49a14c91ad72bde588c41b14c1ccc6fb097a9c"
   integrity sha512-5x1+PMSWtWy/TSu0eWGpjIEf0/fGCLkBcYN6kshEzO/9hVdGJdc921Ftv71PevibTDuFln8d0W9E+fm3Z2j13Q==
